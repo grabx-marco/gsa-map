@@ -84,8 +84,6 @@ Microsoft Learn page
 PoP data is sourced from:  
 **Microsoft Learn** → [Global Secure Access points of presence and IP addresses](https://learn.microsoft.com/en-us/entra/global-secure-access/reference-points-of-presence)
 
-Microsoft updates this page periodically as new PoPs are added. Run with `--refresh` to pick up changes.
-
 The script is designed to handle additions automatically:
 - **New locations** in existing regional tables are picked up without any code changes
 - **New regions** would require adding the heading keyword to `REGION_KEYWORDS` in `fetch_pops.py` (e.g. if Microsoft ever splits EMEA into separate sections)
