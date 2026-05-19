@@ -14,7 +14,6 @@ The script automatically fetches the current PoP list from Microsoft Learn, geoc
   - **Blue** — GSA service deployed
   - **Green** — GSA service + Remote Network Gateway active
 - Popup per marker with Azure Region, GSA region, and Remote Network status
-- Geocoding results cached in `pops.json` to avoid repeated API calls
 - Fully self-contained output (`map.html` includes all data inline)
 
 ---
@@ -38,32 +37,11 @@ pip install -r requirements.txt
 
 ## Usage
 
-### First run
-
-Fetches data from Microsoft, geocodes all locations, writes `pops.json` and `map.html`:
-
 ```bash
 python3 fetch_pops.py
 ```
 
-The first run takes ~45 seconds due to Nominatim's 1 request/sec rate limit.
-
-### Subsequent runs
-
-Reads from the cached `pops.json` and regenerates `map.html` instantly:
-
-```bash
-python3 fetch_pops.py
-```
-
-### Force refresh
-
-Re-fetches the Microsoft page and re-geocodes all locations (useful after Microsoft updates the PoP list):
-
-```bash
-rm pops.json
-python3 fetch_pops.py --refresh
-```
+The script always fetches fresh data from Microsoft Learn and geocodes all locations. This takes ~45 seconds due to Nominatim's 1 request/sec rate limit.
 
 Then open `map.html` in any browser.
 
@@ -97,8 +75,7 @@ Microsoft Learn page
 |---|---|
 | `fetch_pops.py` | Main script: fetch, geocode, generate map |
 | `requirements.txt` | Python dependencies |
-| `pops.json` | Cached geocoded PoP data (generated) |
-| `map.html` | Interactive map output (generated) |
+| `map.html` | Interactive map output (generated, not versioned) |
 
 ---
 
@@ -123,8 +100,6 @@ This project uses the [Nominatim](https://nominatim.openstreetmap.org/) geocodin
 Usage must comply with the [Nominatim Usage Policy](https://operations.osmfoundation.org/policies/nominatim/):
 - Maximum **1 request per second** (enforced by the script)
 - A valid **User-Agent** header is sent with every request
-- Results are **cached** in `pops.json` to minimize API calls
-
 If you run this in a CI/CD pipeline or automate refreshes frequently, consider hosting your own Nominatim instance.
 
 ---

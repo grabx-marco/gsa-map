@@ -4,14 +4,12 @@ Fetches Microsoft Global Secure Access Points of Presence,
 geocodes them via Nominatim, and generates a standalone Leaflet.js map.
 
 Usage:
-    python fetch_pops.py            # Use cached pops.json if present
-    python fetch_pops.py --refresh  # Force re-fetch and re-geocode
+    python3 fetch_pops.py
 """
 
 from __future__ import annotations
 
 import json
-import sys
 import time
 from pathlib import Path
 
@@ -23,7 +21,6 @@ MICROSOFT_URL = (
     "reference-points-of-presence"
 )
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
-CACHE_FILE = Path("pops.json")
 OUTPUT_FILE = Path("map.html")
 
 # Nominatim requires a descriptive User-Agent per usage policy:
@@ -41,35 +38,27 @@ REGION_KEYWORDS = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Data fetching
-# ---------------------------------------------------------------------------
-
 def fetch_pops() -> list[dict]:
     """Fetch and parse GSA PoP locations from Microsoft documentation."""
-    print(f"Fetching PoP data from Microsoft Learn...")
+    print("Fetching PoP data from Microsoft Learn...")
     resp = requests.get(MICROSOFT_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
     resp.encoding = "utf-8"  # Microsoft Learn returns UTF-8 but misreports encoding
 
     soup = BeautifulSoup(resp.text, "html.parser")
-    pops: list[dict] = []
-    current_region: str | None = None
+    pops = []
+    current_region = None
 
     for element in soup.find_all(["h2", "h3", "table"]):
         if element.name in ("h2", "h3"):
-            text = element.get_text()
             for keyword, region in REGION_KEYWORDS.items():
-                if keyword in text:
+                if keyword in element.get_text():
                     current_region = region
                     break
 
         elif element.name == "table" and current_region:
             headers = [th.get_text(strip=True) for th in element.find_all("th")]
-            if not headers:
-                continue
-
-            col: dict[str, int] = {}
+            col = {}
             for i, h in enumerate(headers):
                 if "Physical Location" in h:
                     col["location"] = i
@@ -87,47 +76,30 @@ def fetch_pops() -> list[dict]:
                 cells = row.find_all("td")
                 if len(cells) <= max(col["location"], col["gsa"]):
                     continue
-
                 if "✅" not in cells[col["gsa"]].get_text():
                     continue
 
                 location = cells[col["location"]].get_text(strip=True)
-                azure_region = (
-                    cells[col["azure"]].get_text(strip=True) if "azure" in col else ""
-                )
-                remote_network = (
-                    "remote" in col and "✅" in cells[col["remote"]].get_text()
-                )
-
                 parts = [p.strip() for p in location.split(",")]
-                city = parts[0]
-                country = parts[-1]
 
-                pops.append(
-                    {
-                        "azure_region": azure_region,
-                        "location": location,
-                        "city": city,
-                        "country": country,
-                        "region": current_region,
-                        "remote_network": remote_network,
-                        "lat": None,
-                        "lon": None,
-                    }
-                )
+                pops.append({
+                    "azure_region": cells[col["azure"]].get_text(strip=True) if "azure" in col else "",
+                    "location": location,
+                    "city": parts[0],
+                    "country": parts[-1],
+                    "region": current_region,
+                    "remote_network": "remote" in col and "✅" in cells[col["remote"]].get_text(),
+                    "lat": None,
+                    "lon": None,
+                })
 
     print(f"Found {len(pops)} locations with Global Secure Access service deployed.")
     return pops
 
 
-# ---------------------------------------------------------------------------
-# Geocoding
-# ---------------------------------------------------------------------------
-
-def geocode_location(location: str, city: str, country: str) -> tuple[float, float] | None:
-    """Geocode a location string using Nominatim, with fallbacks."""
-    queries = [location, f"{city}, {country}", city]
-    for query in queries:
+def geocode(location: str, city: str, country: str) -> tuple[float, float] | None:
+    """Geocode a location string via Nominatim, with fallback queries."""
+    for query in [location, f"{city}, {country}", city]:
         try:
             resp = requests.get(
                 NOMINATIM_URL,
@@ -140,45 +112,15 @@ def geocode_location(location: str, city: str, country: str) -> tuple[float, flo
             if results:
                 return float(results[0]["lat"]), float(results[0]["lon"])
         except Exception as exc:
-            print(f"    Error geocoding '{query}': {exc}")
-        time.sleep(1)  # Nominatim rate limit: 1 req/sec
+            print(f"  Error geocoding '{query}': {exc}")
+        time.sleep(1)
     return None
 
 
-def geocode_all(pops: list[dict]) -> list[dict]:
-    """Geocode every PoP entry, respecting Nominatim's 1 req/sec limit."""
-    print("Geocoding locations via Nominatim (1 request/sec)...")
-    failed: list[str] = []
-
-    for i, pop in enumerate(pops):
-        print(f"  [{i + 1:2d}/{len(pops)}] {pop['location']}")
-        result = geocode_location(pop["location"], pop["city"], pop["country"])
-        if result:
-            pop["lat"], pop["lon"] = result
-        else:
-            print(f"    WARNING: Could not geocode '{pop['location']}'")
-            failed.append(pop["location"])
-        time.sleep(1)
-
-    if failed:
-        print(f"\nFailed to geocode {len(failed)} location(s):")
-        for loc in failed:
-            print(f"  - {loc}")
-
-    return pops
-
-
-# ---------------------------------------------------------------------------
-# Map generation
-# ---------------------------------------------------------------------------
-
-def generate_map_html(pops: list[dict]) -> str:
-    """Generate a self-contained Leaflet.js HTML map with embedded JSON data."""
+def build_map(pops: list[dict]) -> str:
+    """Generate a self-contained Leaflet.js HTML map with embedded location data."""
     geocoded = [p for p in pops if p["lat"] is not None]
-    total = len(pops)
-    geocoded_count = len(geocoded)
     remote_count = sum(1 for p in geocoded if p["remote_network"])
-
     markers_json = json.dumps(geocoded, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
@@ -264,7 +206,7 @@ def generate_map_html(pops: list[dict]) -> str:
             GSA + Remote Network Gateway
         </div>
         <div class="stats">
-            {geocoded_count} of {total} locations shown<br>
+            {len(geocoded)} of {len(pops)} locations shown<br>
             {remote_count} with Remote Network Gateway
         </div>
     </div>
@@ -312,24 +254,20 @@ def generate_map_html(pops: list[dict]) -> str:
 </html>"""
 
 
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
-
 def main() -> None:
-    force_refresh = "--refresh" in sys.argv
+    pops = fetch_pops()
 
-    if CACHE_FILE.exists() and not force_refresh:
-        print(f"Loading cached data from {CACHE_FILE} (use --refresh to re-fetch).")
-        pops = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
-    else:
-        pops = fetch_pops()
-        pops = geocode_all(pops)
-        CACHE_FILE.write_text(json.dumps(pops, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"Saved {len(pops)} entries to {CACHE_FILE}.")
+    print(f"Geocoding {len(pops)} locations via Nominatim (1 request/sec)...")
+    for i, pop in enumerate(pops):
+        print(f"  [{i + 1:2d}/{len(pops)}] {pop['location']}")
+        coords = geocode(pop["location"], pop["city"], pop["country"])
+        if coords:
+            pop["lat"], pop["lon"] = coords
+        else:
+            print(f"  WARNING: Could not geocode '{pop['location']}'")
+        time.sleep(1)
 
-    html = generate_map_html(pops)
-    OUTPUT_FILE.write_text(html, encoding="utf-8")
+    OUTPUT_FILE.write_text(build_map(pops), encoding="utf-8")
     print(f"\nMap written to {OUTPUT_FILE} — open it in your browser.")
 
 
