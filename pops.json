@@ -1,0 +1,422 @@
+[
+  {
+    "azure_region": "New Zealand North",
+    "location": "Auckland, New Zealand",
+    "city": "Auckland",
+    "country": "New Zealand",
+    "region": "APAC",
+    "remote_network": false,
+    "lat": -36.852095,
+    "lon": 174.7631803
+  },
+  {
+    "azure_region": "Korea South",
+    "location": "Busan, South Korea",
+    "city": "Busan",
+    "country": "South Korea",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": 35.1799528,
+    "lon": 129.0752365
+  },
+  {
+    "azure_region": "South India",
+    "location": "Chennai, India",
+    "city": "Chennai",
+    "country": "India",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": 13.0836939,
+    "lon": 80.270186
+  },
+  {
+    "azure_region": "Australia Southeast",
+    "location": "Melbourne, Australia",
+    "city": "Melbourne",
+    "country": "Australia",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": -37.8142454,
+    "lon": 144.9631732
+  },
+  {
+    "azure_region": "Japan West",
+    "location": "Osaka, Japan",
+    "city": "Osaka",
+    "country": "Japan",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": 34.6937569,
+    "lon": 135.5014539
+  },
+  {
+    "azure_region": "Central India",
+    "location": "Pune, India",
+    "city": "Pune",
+    "country": "India",
+    "region": "APAC",
+    "remote_network": false,
+    "lat": 18.5213738,
+    "lon": 73.8545071
+  },
+  {
+    "azure_region": "Korea Central",
+    "location": "Seoul, South Korea",
+    "city": "Seoul",
+    "country": "South Korea",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": 37.5666791,
+    "lon": 126.9782914
+  },
+  {
+    "azure_region": "Southeast Asia",
+    "location": "Singapore, Singapore",
+    "city": "Singapore",
+    "country": "Singapore",
+    "region": "APAC",
+    "remote_network": false,
+    "lat": 1.357107,
+    "lon": 103.8194992
+  },
+  {
+    "azure_region": "Australia East",
+    "location": "Sydney, Australia",
+    "city": "Sydney",
+    "country": "Australia",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": -33.8698439,
+    "lon": 151.2082848
+  },
+  {
+    "azure_region": "Taiwan North",
+    "location": "Taipei, Taiwan",
+    "city": "Taipei",
+    "country": "Taiwan",
+    "region": "APAC",
+    "remote_network": false,
+    "lat": 25.0375198,
+    "lon": 121.5636796
+  },
+  {
+    "azure_region": "Japan East",
+    "location": "Tokyo, Japan",
+    "city": "Tokyo",
+    "country": "Japan",
+    "region": "APAC",
+    "remote_network": true,
+    "lat": 35.6768601,
+    "lon": 139.7638947
+  },
+  {
+    "azure_region": "West Europe",
+    "location": "Amsterdam, Netherlands",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 52.3730796,
+    "lon": 4.8924534
+  },
+  {
+    "azure_region": "Germany North",
+    "location": "Berlin, Germany",
+    "city": "Berlin",
+    "country": "Germany",
+    "region": "EMEA",
+    "remote_network": false,
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "azure_region": "South Africa West",
+    "location": "Cape Town, South Africa",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": -33.9288301,
+    "lon": 18.4172197
+  },
+  {
+    "azure_region": "UAE North",
+    "location": "Dubai, UAE",
+    "city": "Dubai",
+    "country": "UAE",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 25.0742823,
+    "lon": 55.1885387
+  },
+  {
+    "azure_region": "North Europe",
+    "location": "Dublin, Ireland",
+    "city": "Dublin",
+    "country": "Ireland",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 53.3493795,
+    "lon": -6.2605593
+  },
+  {
+    "azure_region": "Germany West Central",
+    "location": "Frankfurt, Germany",
+    "city": "Frankfurt",
+    "country": "Germany",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 50.1106444,
+    "lon": 8.6820917
+  },
+  {
+    "azure_region": "Sweden Central",
+    "location": "Gavle, Sweden",
+    "city": "Gavle",
+    "country": "Sweden",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 60.6750132,
+    "lon": 17.1467019
+  },
+  {
+    "azure_region": "South Africa North",
+    "location": "Johannesburg, South Africa",
+    "city": "Johannesburg",
+    "country": "South Africa",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": -26.205,
+    "lon": 28.049722
+  },
+  {
+    "azure_region": "UK South",
+    "location": "London, UK",
+    "city": "London",
+    "country": "UK",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 51.5074456,
+    "lon": -0.1277653
+  },
+  {
+    "azure_region": "Spain Central",
+    "location": "Madrid, Spain",
+    "city": "Madrid",
+    "country": "Spain",
+    "region": "EMEA",
+    "remote_network": false,
+    "lat": 40.416782,
+    "lon": -3.703507
+  },
+  {
+    "azure_region": "Italy North",
+    "location": "Milan, Italy",
+    "city": "Milan",
+    "country": "Italy",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 45.4641943,
+    "lon": 9.1896346
+  },
+  {
+    "azure_region": "France South",
+    "location": "Marseille, France",
+    "city": "Marseille",
+    "country": "France",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 43.2963986,
+    "lon": 5.3777888
+  },
+  {
+    "azure_region": "France Central",
+    "location": "Paris, France",
+    "city": "Paris",
+    "country": "France",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 48.8588897,
+    "lon": 2.320041
+  },
+  {
+    "azure_region": "Israel Central",
+    "location": "Tel Aviv, Israel",
+    "city": "Tel Aviv",
+    "country": "Israel",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 32.0852997,
+    "lon": 34.7818064
+  },
+  {
+    "azure_region": "Austria East",
+    "location": "Vienna, Austria",
+    "city": "Vienna",
+    "country": "Austria",
+    "region": "EMEA",
+    "remote_network": false,
+    "lat": 48.2083537,
+    "lon": 16.3725042
+  },
+  {
+    "azure_region": "Poland Central",
+    "location": "Warsaw, Poland",
+    "city": "Warsaw",
+    "country": "Poland",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 52.2333742,
+    "lon": 21.0711489
+  },
+  {
+    "azure_region": "Switzerland North",
+    "location": "Zurich, Switzerland",
+    "city": "Zurich",
+    "country": "Switzerland",
+    "region": "EMEA",
+    "remote_network": true,
+    "lat": 47.3744489,
+    "lon": 8.5410422
+  },
+  {
+    "azure_region": "Brazil South",
+    "location": "Campinas, Brazil",
+    "city": "Campinas",
+    "country": "Brazil",
+    "region": "LATAM",
+    "remote_network": false,
+    "lat": -22.9056391,
+    "lon": -47.059564
+  },
+  {
+    "azure_region": "Brazil Southeast",
+    "location": "Rio de Janeiro, Brazil",
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "region": "LATAM",
+    "remote_network": false,
+    "lat": -22.9110137,
+    "lon": -43.2093727
+  },
+  {
+    "azure_region": "East US",
+    "location": "Boydton, Virginia, USA",
+    "city": "Boydton",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 36.6673066,
+    "lon": -78.3882002
+  },
+  {
+    "azure_region": "West Central US",
+    "location": "Cheyenne, Wyoming, USA",
+    "city": "Cheyenne",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 41.139981,
+    "lon": -104.820246
+  },
+  {
+    "azure_region": "North Central US",
+    "location": "Chicago, Illinois, USA",
+    "city": "Chicago",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 41.8755616,
+    "lon": -87.6244212
+  },
+  {
+    "azure_region": "Central US",
+    "location": "Des Moines, Iowa, USA",
+    "city": "Des Moines",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 41.5868654,
+    "lon": -93.6249494
+  },
+  {
+    "azure_region": "East US 2",
+    "location": "Manassas, Virginia, USA",
+    "city": "Manassas",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 38.7509488,
+    "lon": -77.4752667
+  },
+  {
+    "azure_region": "Canada East",
+    "location": "Montreal, Quebec, Canada",
+    "city": "Montreal",
+    "country": "Canada",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 45.5031824,
+    "lon": -73.5698065
+  },
+  {
+    "azure_region": "West US 3",
+    "location": "Phoenix, Arizona, USA",
+    "city": "Phoenix",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 33.4484367,
+    "lon": -112.074141
+  },
+  {
+    "azure_region": "Mexico Central",
+    "location": "Queretaro, Mexico",
+    "city": "Queretaro",
+    "country": "Mexico",
+    "region": "NA",
+    "remote_network": false,
+    "lat": 20.8052225,
+    "lon": -99.8837376
+  },
+  {
+    "azure_region": "West US 2",
+    "location": "Quincy, Washington, USA",
+    "city": "Quincy",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 47.2343673,
+    "lon": -119.8535054
+  },
+  {
+    "azure_region": "South Central US",
+    "location": "San Antonio, Texas, USA",
+    "city": "San Antonio",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 29.4246002,
+    "lon": -98.4951405
+  },
+  {
+    "azure_region": "West US",
+    "location": "San Jose, California, USA",
+    "city": "San Jose",
+    "country": "USA",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 37.3361663,
+    "lon": -121.890591
+  },
+  {
+    "azure_region": "Canada Central",
+    "location": "Toronto, Ontario, Canada",
+    "city": "Toronto",
+    "country": "Canada",
+    "region": "NA",
+    "remote_network": true,
+    "lat": 43.6534817,
+    "lon": -79.3839347
+  }
+]

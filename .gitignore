@@ -1,0 +1,7 @@
+# Generated output
+map.html
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
