@@ -28,7 +28,7 @@ The script automatically fetches the current PoP list from Microsoft Learn, geoc
 ## Installation
 
 ```bash
-git clone https://github.com/your-org/gsa-map.git
+git clone https://github.com/grabx-marco/gsa-map.git
 cd gsa-map
 pip install -r requirements.txt
 ```
